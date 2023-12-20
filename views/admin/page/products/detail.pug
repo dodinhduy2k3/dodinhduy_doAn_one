@@ -1,0 +1,74 @@
+extends ../../layouts/default.pug
+
+block main
+  .product-detail
+    .product-images
+      if product.thumbnail
+        img.product-thumbnail(src=product.thumbnail, alt=`Hình ảnh ${product.title}`)
+
+    .product-info
+      if product.title
+        h1.product-title= product.title
+
+      .product-attributes
+        .product-price
+          if product.price
+            span.label Giá:
+            span.value= product.price
+
+        .product-discount
+          if product.discountPercentage
+            span.label Giảm giá:
+            span.value= product.discountPercentage
+
+        .product-stock
+          if product.stock
+            span.label Còn lại:
+            span.value= product.stock
+
+        .product-position
+          if product.position
+            span.label Vị trí:
+            span.value= product.position
+
+        .product-status
+          if product.status
+            span.label Trạng thái:
+            span.value(class=product.status === "active" ? "badge badge-success" : "badge badge-danger")= product.status
+
+      if product.description
+        .product-description
+          h2 Mô tả sản phẩm
+          p= product.description
+
+  // CSS để làm đẹp khung chi tiết sản phẩm
+  style.
+    .product-detail {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: row;
+      overflow: hidden; /* Added overflow property */
+    }
+
+    .product-images {
+      text-align: center;
+      margin-right: 20px;
+    }
+
+    .product-thumbnail {
+      max-width: 100%;
+      height: auto; /* Maintain aspect ratio */
+      width: 200px; /* Adjust width as needed */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-thumbnail:hover {
+     
